@@ -13,13 +13,16 @@ export class TenantMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     
     let tenantId = '';
-    const host = req.headers.referer;
+    const host = req.headers.referer;   //website 
+    console.log(host);
+    
     if(host)
     {
       const cleanHost = host.replace(/^https?:\/\//, '');
          tenantId = cleanHost.split('.')[0];
     }else{
-      const host = req.hostname;
+      const host = req.hostname;   //app
+      
         tenantId = host.split('.')[0];
     }
  
@@ -50,6 +53,7 @@ export class TenantMiddleware implements NestMiddleware {
       
       next();
     } catch (error) {
+      // await this.dbService.createDomin(tenantId)
       console.error('Error details:', error);  
   return res.status(500).send(`Error connecting to tenant database: ${error.message}`);
       return res.status(500).send('Error connecting to tenant database');

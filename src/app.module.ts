@@ -28,15 +28,14 @@ import { OrderBuy } from './modules/orderBuy/entity/orderBuy.entity';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
- 
-
+    
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST || '193.203.184.200',
+      host: process.env.DB_HOST || 'localhost',
       port: +process.env.DB_PORT || 3306,
-      username: process.env.DB_USERNAME || 'u374546222_ahmedsamir1911',
-      password: process.env.DB_PASSWORD || 'Ahmed141516141516',
-      database: process.env.DB_DATABASE || 'u374546222_tem',
+      username: process.env.DB_USERNAME || 'root',
+      password: process.env.DB_PASSWORD || '',
+      database: process.env.DB_DATABASE || 'moshamadefulte',
       entities: [Domin, User, UserPermission, Departments, Permission,FrontEntity, ],
       synchronize: true,
     }),
