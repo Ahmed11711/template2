@@ -21,4 +21,17 @@ export class FrontService {
    
     return await this.frontRepository.find();
   }
+
+  async updateNavbarSettings(data,id) {
+    const front = await this.frontRepository.findOne({ where: { id } });
+  
+    if (!front) {
+      throw new Error('Navbar setting not found');
+    }
+  
+    front.name = data.name;
+    front.content = data.content;
+  
+    return await this.frontRepository.save(front);
+  }
 }
